@@ -7,7 +7,7 @@ double SyncTime;
 int Pr = 0;
 const int Ws = 2000, Hs = 2000;
 
-
+//class of comlex numbers
 class cmpl{
     double Re, Im;
 public:
@@ -121,7 +121,7 @@ public:
         return n;
     }
 };
-
+//class for filling massive
 class frame {
     unsigned char Image[Hs][Ws][3];
 
@@ -133,17 +133,17 @@ class frame {
 
 public :
     frame (double a) {
-    double x0 = -3, y0 = -3, x1 = 3, y1 = 3, n;
-    cmpl z(0, 0);
+        double x0 = -3, y0 = -3, x1 = 3, y1 = 3, n;
+        cmpl z(0, 0);
 
-    for (int y = 0; y < Hs; y++)
-        for (int x = 0; x < Ws; x++)
-        {
-            z = cmpl(x * (x1 - x0) / Ws + x0, y * (y1 - y0) / Hs + y0);
-            n = z.Newton1();
-            PutPixel(x, y, n * 300, n * 130, n * 1);
-        }
-}
+        for (int y = 0; y < Hs; y++)
+            for (int x = 0; x < Ws; x++)
+            {
+                z = cmpl(x * (x1 - x0) / Ws + x0, y * (y1 - y0) / Hs + y0);
+                n = z.Newton1();
+                PutPixel(x, y, n * 300, n * 130, n * 1);
+            }
+    }
     frame (int a) {
         double x0 = -3, y0 = -3, x1 = 3, y1 = 3, n;
         cmpl z(0, 0);
@@ -198,11 +198,15 @@ public :
         glDrawPixels(Ws, Hs, GL_BGR_EXT, GL_UNSIGNED_BYTE, Image);
     }
 };
+//you can choose that you want rendering (sn - Newton sinus, p3 - Newton 3rd degree polynomial, p5 - Newton 5th degree polynomial, j - Julia,
+// ,md - Mandelbrot) you should uncomment what you wanna rendering, and also uncomment it in func Display
 //frame sn(2);
 //frame p3(0.1);
 frame p5(1, 2);
 //frame j(1, 2, 3);
 //frame md(1, 2, 3, 4);
+
+//class for rendering massive
 class animation {
 private :
     animation(int argc, char*argv []) {
